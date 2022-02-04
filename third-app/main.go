@@ -37,7 +37,9 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	otherServiceURL := os.Getenv("OTHER_SERVICE_URL")
 	if otherServiceURL != "" {
 		b, err := get(otherServiceURL)
-		rStr = rStr + "ERROR: " + err.Error() + "\n"
+		if err != nil {
+			rStr = rStr + "ERROR: " + err.Error() + "\n"
+		}
 		rStr = rStr + "RESPONSE: " + b + "\n"
 	}
 
